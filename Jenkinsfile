@@ -62,8 +62,13 @@ pipeline {
 
         stage('Deploy with Docker Compose') {
             steps {
-                sh 'docker-compose down --remove-orphans || true'
-                sh 'docker-compose up -d'
+                sh '''
+                  echo "Cleaning up old containers..."
+                  docker-compose down --remove-orphans || true
+                  docker-compose rm -f -s -v || true
+                  echo "Starting fresh containers..."
+                  docker-compose up -d --build
+                '''
             }
         }
     }
@@ -71,6 +76,9 @@ pipeline {
     post {
         success {
             echo "Pipeline finished ✅"
+        }
+        failure {
+            echo "Pipeline failed ❌"
         }
     }
 }
