@@ -51,7 +51,7 @@ Build image:
 ```bash
 docker build -t leoughhh/teamavail:latest .
 ```
-![Docker build]('/images/docker build.PNG')
+![Docker build](/images/docker%20build.PNG)
 
 Run container:
 
@@ -64,7 +64,7 @@ Check running containers:
 ```bash
 docker ps
 ```
-![Docker images]('/images/docker images.PNG')
+![Docker images](/images/docker%20images.PNG)
 
 Stop & remove container:
 
@@ -81,7 +81,7 @@ Start application with Redis:
 ```bash
 docker-compose up -d
 ```
-![Docker Compose Up]('/images/docker compose up.PNG')
+![Docker Compose Up](/images/docker%20compose%20up.PNG)
 
 Check containers:
 
