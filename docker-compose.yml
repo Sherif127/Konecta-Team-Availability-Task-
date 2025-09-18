@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  tracker-app:
+    image: "leoughhh/teamavail:latest" 
+    container_name: tracker_app_container
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./input:/app/input:ro
+      - ./output:/app/output
+      - ./public:/app/public
+    restart: unless-stopped
+    depends_on:
+      - tracker-redis
+    networks:
+      - tracker-network
+
+  tracker-redis:
+    image: redis:7-alpine
+    container_name: tracker_redis_container
+    ports:
+      - "6379:6379"
+    volumes:
+      - tracker_redis_data:/data
+    restart: unless-stopped
+    networks:
+      - tracker-network
+
+volumes:
+  tracker_redis_data:
+
+networks:
+  tracker-network:
+    driver: bridge
